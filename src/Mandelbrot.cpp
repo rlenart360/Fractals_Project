@@ -9,7 +9,7 @@ void Mandelbrot::gen_fractal()
     
     int height = get_height(), width = get_width();
     int i, npixels = height*width;
-    for (i = 0; i<npixels; i++)
+    for (i = 0; i < npixels; i++)
     {
         int x = i%height;
         int y = i/height;
@@ -25,7 +25,6 @@ void Mandelbrot::gen_fractal()
         double z_i = 0;
         
         int n = 1;
-        int max_iter = MAXITER;
         
         // Begin iterating... while z is not infinity and not too many iterations have passed...
         
@@ -42,26 +41,28 @@ void Mandelbrot::gen_fractal()
             
             n++;
             
-            // Color each pixel...
-            // Not exactly sure how m_bitmap works...
-            
-            // m_bitmap[x*m_height*4 + y*4 + 0]; // R
-            // m_bitmap[x*m_height*4 + y*4 + 1]; // G
-            // m_bitmap[x*m_height*4 + y*4 + 2]; // B
         }
         
+        // Color each pixel...
         
+        if (n < MAXITER) // if the point escaped to infinity
+        {
+            m_bitmap[x*m_height*4 + y*4 + 0] = 0; // R
+            m_bitmap[x*m_height*4 + y*4 + 1] = 0; // G
+            m_bitmap[x*m_height*4 + y*4 + 2] = 0; // B
+            m_bitmap[x*m_height*4 + y*4 + 3] = 255; // A
+        }
+
+        else if (n == MAXITER) // if the point remained in the set
+        {
+            m_bitmap[x*m_height*4 + y*4 + 0] = z_r*255; // R
+            m_bitmap[x*m_height*4 + y*4 + 1] = z_i*255; // G
+            m_bitmap[x*m_height*4 + y*4 + 2] = 255; // B
+            m_bitmap[x*m_height*4 + y*4 + 3] = 255; // A
+        }
+
     }
 
-
-           
-
-        
-        
-        
-            
-            
-
-        
+    cout << m_bitmap << endl;
 
 }

@@ -43,6 +43,7 @@ void Mandelbrot::gen_fractal()
             n++;
             
             // Color each pixel...
+            // Not exactly sure how m_bitmap works...
             
             m_bitmap[x*m_height*4 + y*4 + 0]; // R
             m_bitmap[x*m_height*4 + y*4 + 1]; // G

@@ -1,5 +1,7 @@
 #include "Mandelbrot.h"
 
+#define ABS(x) (x < 0) ? -x : x
+
 void Mandelbrot::gen_fractal()
 {
 	// Real (-2.5, 1)
@@ -47,22 +49,20 @@ void Mandelbrot::gen_fractal()
         
         if (n < MAXITER) // if the point escaped to infinity
         {
-            m_bitmap[x*m_height*4 + y*4 + 0] = 0; // R
-            m_bitmap[x*m_height*4 + y*4 + 1] = 0; // G
-            m_bitmap[x*m_height*4 + y*4 + 2] = 0; // B
-            m_bitmap[x*m_height*4 + y*4 + 3] = 255; // A
+            m_bitmap[x*m_height*4 + y*4 + 0] = 0;    // R
+            m_bitmap[x*m_height*4 + y*4 + 1] = 20*n; // G
+            m_bitmap[x*m_height*4 + y*4 + 2] = 20*n; // B
+            m_bitmap[x*m_height*4 + y*4 + 3] = 250;  // A
         }
 
         else if (n == MAXITER) // if the point remained in the set
         {
-            m_bitmap[x*m_height*4 + y*4 + 0] = z_r*255; // R
-            m_bitmap[x*m_height*4 + y*4 + 1] = z_i*255; // G
-            m_bitmap[x*m_height*4 + y*4 + 2] = 255; // B
-            m_bitmap[x*m_height*4 + y*4 + 3] = 255; // A
+            m_bitmap[x*m_height*4 + y*4 + 0] = ABS(z_i)*200;     // R
+            m_bitmap[x*m_height*4 + y*4 + 1] = ABS(z_r*z_i)*255; // G
+            m_bitmap[x*m_height*4 + y*4 + 2] = ABS(z_r)*200;     // B
+            m_bitmap[x*m_height*4 + y*4 + 3] = 255;              // A
         }
 
     }
-
-    cout << m_bitmap << endl;
 
 }

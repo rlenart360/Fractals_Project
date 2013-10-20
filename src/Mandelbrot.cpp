@@ -57,9 +57,9 @@ void Mandelbrot::gen_fractal()
 
         else if (n == MAXITER) // if the point remained in the set
         {
-            m_bitmap[x*m_height*4 + y*4 + 0] = ABS(z_i)*200;     // R
-            m_bitmap[x*m_height*4 + y*4 + 1] = ABS(z_r*z_i)*255; // G
-            m_bitmap[x*m_height*4 + y*4 + 2] = ABS(z_r)*200;     // B
+            m_bitmap[x*m_height*4 + y*4 + 0] = abs(z_i)*200;     // R
+            m_bitmap[x*m_height*4 + y*4 + 1] = abs(z_r*z_i)*255; // G
+            m_bitmap[x*m_height*4 + y*4 + 2] = abs(z_r)*200;     // B
             m_bitmap[x*m_height*4 + y*4 + 3] = 255;              // A
         }
 

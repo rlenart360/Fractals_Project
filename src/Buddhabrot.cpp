@@ -33,7 +33,7 @@ void Buddhabrot::gen_fractal()
         double di = 3.0 / width;
       
         // cycle through some random subpoints 
-        for (int j = 0 ; j < 10 ; j++)
+        for (int j = 0 ; j < 15 ; j++)
         {
 
             double c_r = point_r + dr * (rand() % 1000 / 1000.0);
@@ -91,9 +91,11 @@ void Buddhabrot::gen_fractal()
         int x = i%height;
         int y = i/height;
 
+        double val = 1.0*bucket[i]/max;
+
         m_bitmap[x*m_height*4 + y*4 + 0] = 0;    // R
-        m_bitmap[x*m_height*4 + y*4 + 1] = 200*bucket[i]/max; //3000*(pow(real_bucket[i],2) + pow(imaginary_bucket[i],2)); // G
-        m_bitmap[x*m_height*4 + y*4 + 2] = 250*bucket[i]/max; // B
+        m_bitmap[x*m_height*4 + y*4 + 1] = 200*(-pow(val,2) + 2*val); // G
+        m_bitmap[x*m_height*4 + y*4 + 2] = 250*(-pow(val,2) + 2*val); // B
         m_bitmap[x*m_height*4 + y*4 + 3] = 250;  // A
 
      }

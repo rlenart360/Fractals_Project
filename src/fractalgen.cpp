@@ -26,8 +26,8 @@ int main(int argc, char *argv[])
     }
 
     // Create a fractal object
-	//Mandelbrot my_fractal(3000, 3000);
-	Buddhabrot my_fractal(3000, 3000);
+	Mandelbrot my_fractal(3000, 3000);
+	//Buddhabrot my_fractal(3000, 3000);
 	cout << "Fractal Allocated" << endl;
 
     // Generate the fractal

@@ -66,9 +66,9 @@ void Mandelbrot::gen_fractal()
         {
 
             HsvColor colors;
-            colors.h = (180*n - 95*(MAXITER - n))/MAXITER;
-            colors.s = 15*log(n) + 140;
-            colors.v = 250/log(n) + 20;
+            colors.h = (180*n - 110*(MAXITER - n))/MAXITER;
+            colors.s = 170;
+            colors.v = 15*n;
 
             RgbColor mycolors = HsvToRgb(colors);
             m_bitmap[x*m_height*4 + y*4 + 0] = mycolors.r; //3*n+10;    // R

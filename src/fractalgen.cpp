@@ -22,10 +22,10 @@ int main(int argc, char *argv[])
         string type = argv[1];
 
         if (type.at(0) == 'b')
-            my_fractal = new Buddhabrot(3000, 3000);
+            my_fractal = new Buddhabrot(1000, 1000);
         
         else if (type.at(0) == 'm')
-            my_fractal = new Mandelbrot(3000, 3000);
+            my_fractal = new Mandelbrot(1000, 1000);
     }
 
     else

@@ -11,31 +11,39 @@ int main(int argc, char *argv[])
 	srand(time(0));
    
     // Read command line input (if you're on windows, you might want to replace this with some I/O code)
-    double a;
     char *str; 
     str = (char *) malloc(sizeof(char) * 11);
-    if (argc < 3)
+    strcpy(str, "output.png");
+
+    Fractal *my_fractal;
+
+    if (argc == 2)
     {
-        a = 1.0;
-        strcpy(str,"output.png");
-    }
-    else
-    {
-        a = (double) atoi(argv[1]);
-        str = argv[2];
+        string type = argv[1];
+
+        if (type.at(0) == 'b')
+            my_fractal = new Buddhabrot(3000, 3000);
+        
+        else if (type.at(0) == 'm')
+            my_fractal = new Mandelbrot(3000, 3000);
     }
 
+    else
+    {
+        cout << "Usage is ./fractalgen type [buddhabrot or mandelbrot]" << endl;
+        return 1;
+    }
+
+
     // Create a fractal object
-	Mandelbrot my_fractal(3000, 3000);
-	//Buddhabrot my_fractal(3000, 3000);
 	cout << "Fractal Allocated" << endl;
 
     // Generate the fractal
-    my_fractal.gen_fractal();
+    my_fractal->gen_fractal();
     cout << "Fractal Created" << endl;
     
     // Save the fractal to a file
-	my_fractal.save_file(str);
+	my_fractal->save_file(str);
     cout << "Fractal Saved to file" << endl;
     
     if (argc < 3)

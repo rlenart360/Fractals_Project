@@ -18,8 +18,7 @@ void Buddhabrot::gen_fractal()
     int *bucket = new int[width*height];
 
     // stores the points in main bucket to be incremented
-    int *tmp_bucket = new int[MAXITER];
-
+#pragma omp parallel for
     for (i = 0; i < npixels; i++)
     {
         int x = i%height;
@@ -32,9 +31,12 @@ void Buddhabrot::gen_fractal()
         double dr = 3.0 / width;
         double di = 3.0 / width;
       
+
         // cycle through some random subpoints 
         for (int j = 0 ; j < 15 ; j++)
         {
+
+            int *tmp_bucket = new int[MAXITER];
 
             double c_r = point_r + dr * (rand() % 1000 / 1000.0);
             double c_i = point_i + di * (rand() % 1000 / 1000.0);
@@ -73,6 +75,8 @@ void Buddhabrot::gen_fractal()
                 for (int j = 0 ; j < n ; j++)
                     if ( tmp_bucket[j] >= 0 && tmp_bucket[j] < height*width )
                         bucket[tmp_bucket[j]] += 1;
+
+            delete [] tmp_bucket;
  
         } // exiting curent point
         

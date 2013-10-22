@@ -13,7 +13,7 @@ void Mandelbrot::gen_fractal()
     double dx = 3.0/width;
     double dy = 3.0/height;
 
-
+#pragma omp parallel for
     for (i = 0; i < npixels; i++)
     {
         int x = i%height;
